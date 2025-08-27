@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "AUTH_GITHUB_ID": "@auth_github_id",
+    "AUTH_GITHUB_SECRET": "@auth_github_secret"
+  }
+}

@@ -11,9 +11,9 @@ export default defineConfig({
     dialect: "postgresql",
     dbCredentials: {
         url: process.env.DATABASE_URL,
-        // ssl: process.env.DATABASE_URL.includes("sslmode=require") || process.env.NODE_ENV === "production"
-        //     ? { rejectUnauthorized: false } // Bật SSL nếu cần
-        //     : undefined,
+        ssl: process.env.DATABASE_URL.includes("sslmode=require") || process.env.NODE_ENV === "production"
+            ? { rejectUnauthorized: false } // Bật SSL nếu cần
+            : undefined,
     },
     verbose: true,
     strict: true,
