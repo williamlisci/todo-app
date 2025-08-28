@@ -14,11 +14,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 22
-          cache: 'pnpm'   # ✅ bật cache cho pnpm
+          cache: 'pnpm'   # ✅ bật cache pnpm
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 10
+      # Cài đặt pnpm bằng npm global
+      - name: Install pnpm
+        run: npm install -g pnpm@10
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
