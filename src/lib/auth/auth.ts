@@ -4,6 +4,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import GitHubProvider from "next-auth/providers/github";
 import { db } from "@/lib/db/db";
 import { accounts, sessions, users, verificationTokens } from "@/lib/db/auth-schema";
+import {Pool} from "pg";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: DrizzleAdapter(db, {
@@ -14,10 +15,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
     providers: [
         GitHubProvider({
-            clientId: process.env.AUTH_GITHUB_ID as string,
-            clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+            clientId: process.env.GITHUB_CLIENT_ID!,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!,
         }),
     ],
+    secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async session({ session, user }) {
             if (session.user) {
