@@ -14,20 +14,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 22
-          cache: 'pnpm'   # ✅ bật cache pnpm
-
-      # Cài đặt pnpm bằng npm global
-      - name: Install pnpm
-        run: npm install -g pnpm@10
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci   # npm ci dùng lockfile (package-lock.json)
 
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
       - name: Run database migrations
-        run: pnpm dlx drizzle-kit push
+        run: npx drizzle-kit push
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
